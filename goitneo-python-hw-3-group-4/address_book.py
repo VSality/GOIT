@@ -5,6 +5,9 @@ from collections import UserDict
 class BirthdayNotFoundError(Exception):
     pass
 
+class BirthdayFormatError(Exception):
+    pass
+
 class ContactNotFoundError(Exception):
     pass
 
@@ -32,9 +35,11 @@ class Name(Field):
         
 class Birthday():
     def __init__(self, val):
-        self.datetime_object = datetime.strptime(val, "%d.%m.%Y")
+        try:
+            self.datetime_object = datetime.strptime(val, "%d.%m.%Y")
+        except ValueError:
+            raise BirthdayFormatError("Birthday date format is invalide")
         
-        print(self.datetime_object)
         
     def __str__(self) -> str:
         return datetime.strftime(self.datetime_object, "%d.%m.%Y")
@@ -99,7 +104,10 @@ class AddressBook(UserDict):
         self.data = {}
         
     def add_record(self, record:Record):
-        self.data[record.name.value] = record
+        if record.name.value in self.data:
+            raise ValueError("Not Added, contact already exist. use command 'change' please")
+        else:
+            self.data[record.name.value] = record
         
     def find(self, name:str) -> Record:
         if name in self.data:

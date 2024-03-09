@@ -46,11 +46,18 @@ def show_birthday(args:list, book:AddressBook) -> str:
 
 @input_error
 def add_contact(args:list, book:AddressBook) -> str:
-    name, phone, birthday = args
+    name = args[0]
+    phone = args[1]
+    birthday = None
+    
+    if len(args) == 3:
+        birthday = args[2]
+        
     if birthday != None:
         new_record = Record(name, Birthday(birthday))
     else:
-        new_record = Record(name, birthday)
+        new_record = Record(name)
+        
     new_record.add_phone(phone)
     book.add_record(new_record)
     return "Contact added."
@@ -59,16 +66,16 @@ def add_contact(args:list, book:AddressBook) -> str:
 def chnge_contact(args:list, book:AddressBook) -> str:
     name, phone = args
     finded_contact = book.find(name)
-    if finded_contact != None:
-        finded_contact.change_phone(phone)
-        return "Contact changed."
+    finded_contact.change_phone(phone)
+    return "Contact changed."
+        
    
 @input_error 
 def phone(args:list, book:AddressBook) -> str:
     name = args[0]
     finded_contact = book.find(name)
-    if finded_contact != None:
-        return finded_contact
+    return finded_contact
+        
         
 @input_error   
 def all(book:AddressBook) -> str:
@@ -85,11 +92,10 @@ def all(book:AddressBook) -> str:
 @input_error   
 def birthdays(book:AddressBook) -> str:
     week_list = book.get_birthdays_per_week()
+    if len(week_list) == 0:
+        return "No birthdays"
     text_res = ""
     for dayweek, names in week_list.items():
-        text_res += f"{dayweek}: {names}"
-   
-        return text_res
-    else:
-        raise ContactsEmptyError
+        text_res += f"{dayweek}: {names}\n"
+    return text_res
     
