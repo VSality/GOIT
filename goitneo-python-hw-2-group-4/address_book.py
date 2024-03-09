@@ -6,6 +6,10 @@ class Field:
 
     def __str__(self) -> str:
         return str(self.value)
+    
+class Birthday(Field):
+    def __init__(self, value):
+        super().__init__(value)
 
 class Name(Field):
     def __init__(self, value):
@@ -25,9 +29,13 @@ class Phone(Field):
             return False
 
 class Record:
-    def __init__(self, name):
+    def __init__(self, name:str, birthday:Birthday = None):
         self.name = Name(name)
+        self.birthday = birthday
         self.phones = []
+        
+    def add_birthday(self, birthday:Birthday):
+        self.birthday = birthday
     
     def add_phone(self, num:str):
         if not num in self.phones:
