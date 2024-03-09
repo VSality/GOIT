@@ -19,6 +19,8 @@ def book_error(func):
             return "Birthday not added."
         except ContactNotFoundError:
             return "Contact not added."
+        except BirthdayFormatError:
+            return "Birthday date format is invalide"
 
     return inner
 
