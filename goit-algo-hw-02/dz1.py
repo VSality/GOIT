@@ -4,22 +4,28 @@ import queue
 q = queue.Queue()
 iter = 1
 
-class Request():
+class Request:
+    def __init__(self, id:int):
+        self.id = id
+        
+    def work(self):
+        pass
     
 
 def generate_request():
     global q
-    #Створити нову заявку
-    q.put(iter)
-    #Додати заявку до черги
+    global iter
+    req = Request(iter)
+    q.put(req)
+    iter += 1
 
 def process_request():
-    pass
-    #Якщо черга не пуста:
-        #Видалити заявку з черги
-        #Обробити заявку
-    #Інакше:
-        #Вивести повідомлення, що черга пуста
+    global q
+    if not q.full():
+        req = q.get()
+        req.work()
+    else:
+        print("Queue is empty")
 
 def main():
 
