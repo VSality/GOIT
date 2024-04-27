@@ -1,13 +1,20 @@
-import Queue
+import queue
 
 #Створити чергу заявок
-queue = Queue()
+q = queue.Queue()
+iter = 1
+
+class Request():
+    
 
 def generate_request():
+    global q
     #Створити нову заявку
+    q.put(iter)
     #Додати заявку до черги
 
 def process_request():
+    pass
     #Якщо черга не пуста:
         #Видалити заявку з черги
         #Обробити заявку
@@ -15,9 +22,12 @@ def process_request():
         #Вивести повідомлення, що черга пуста
 
 def main():
-    while 
 
-Головний цикл програми:
-    Поки користувач не вийде з програми:
-        Виконати generate_request() для створення нових заявок
-        Виконати process_request() для обробки заявок
+    while True:
+        generate_request()
+        process_request()
+        
+        
+if __name__ == "__main__":
+    main() 
+    
