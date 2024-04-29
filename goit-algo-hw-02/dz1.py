@@ -9,29 +9,29 @@ class Request:
         self.id = id
         
     def work(self):
-        pass
+        print(f"Оброблена заявка {self.id}")
     
 
 def generate_request():
     global q
     global iter
-    req = Request(iter)
-    q.put(req)
-    iter += 1
+    for _ in range(0, 20):
+        req = Request(iter)
+        print(f"Створена заявка {iter}")
+        q.put(req)
+        print(f"Додана до черги завка {iter}")
+        iter += 1
 
 def process_request():
     global q
-    if not q.full():
+    while not q.full():
         req = q.get()
         req.work()
-    else:
-        print("Queue is empty")
+    print("Queue is empty")
 
 def main():
-
-    while True:
-        generate_request()
-        process_request()
+    generate_request()
+    process_request()
         
         
 if __name__ == "__main__":
