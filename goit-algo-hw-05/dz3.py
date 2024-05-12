@@ -50,11 +50,3 @@ execution_time = timeit.timeit(f'{rabin_karp_search(page2_string, pattern_yes_pa
 print("Время выполнения YES Rabin page2:", execution_time, "секунд", "найдено ", rabin_karp_search(page2_string, pattern_yes_page2))
 execution_time = timeit.timeit(f'{rabin_karp_search(page2_string, pattern_no_page2)}', number=1000000)
 print("Время выполнения NO Rabin page2:", execution_time, "секунд", "найдено ", rabin_karp_search(page2_string, pattern_no_page2))
-
-# ВИСНОВОК:
-
-# У нас є два тексти, на кожний ми взяли слово для пошуку (паттерн) яке існує в ціх текстах, та другий паттерн якого точно неіснує
-# Усі три алгоритми працюють +- однаково швидко, є невелика різниця в часі між пошуком патерну який існує і якого неіснує.
-# Можливо ми побачили різницю на більш великих текстах
-
-
