@@ -50,4 +50,3 @@ execution_time = timeit.timeit(f'{rabin_karp_search(page2_string, pattern_yes_pa
 print("Время выполнения YES Rabin page2:", execution_time, "секунд", "найдено ", rabin_karp_search(page2_string, pattern_yes_page2))
 execution_time = timeit.timeit(f'{rabin_karp_search(page2_string, pattern_no_page2)}', number=1000000)
 print("Время выполнения NO Rabin page2:", execution_time, "секунд", "найдено ", rabin_karp_search(page2_string, pattern_no_page2))
-
