@@ -9,6 +9,7 @@ def binary_search(arr, x):
  
         mid = (high + low) // 2
         iter += 1
+        
  
         # якщо x більше за значення посередині списку, ігноруємо ліву половину
         if arr[mid] < x:
@@ -21,15 +22,16 @@ def binary_search(arr, x):
             
         # інакше x присутній на позиції і повертаємо його
         else:
-            return [iter, mid]
+            return [iter, arr[mid]]
 
     if last >= len(arr):
-        return [iter, -1]
+        return [iter, arr[len(arr)-1]]
+    
     # якщо елемент не знайдений
-    return [iter, last]
+    return [iter, arr[last]]
 
 arr = [2.2, 3.1, 4.3, 5.2, 6.2, 7, 8.3, 9.1]
-x = 7
+x = 1
 result = binary_search(arr, x)
 print(result)
 
